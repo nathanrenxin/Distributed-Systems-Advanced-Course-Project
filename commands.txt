@@ -1,0 +1,29 @@
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45679 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45680 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45681 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45682 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45683 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45684 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45685 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar server/target/scala-2.12/server.jar -p 45686 -s localhost:45678
+
+cd "Desktop\ID2203-master"
+java -jar client/target/scala-2.12/client.jar -p 56787 -s localhost:45678

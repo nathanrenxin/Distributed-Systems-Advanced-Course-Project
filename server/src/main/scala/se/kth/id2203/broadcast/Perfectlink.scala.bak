@@ -1,0 +1,37 @@
+package se.kth.id2203.broadcast
+
+import java.net.{ InetAddress, InetSocketAddress }
+
+import se.kth.id2203.broadcast.ExercisePrimitives.PerfectP2PLink._
+import se.kth.id2203.broadcast.Ports._
+import se.kth.id2203.networking._;
+import se.sics.kompics.{ Init, KompicsEvent }
+import se.sics.kompics.network.{ Address, Network, Transport }
+import se.sics.kompics.sl.{ ComponentDefinition, _ }
+
+
+
+object PerfectP2PLink {
+    case class PerfectLinkMessage(src: NetAddress, dest: NetAddress, payload: KompicsEvent) extends NetMessage(NetHeader(src, dest, Transport.TCP));
+}
+
+class PerfectP2PLink extends ComponentDefinition {
+
+    val pLink = provides[PerfectLink];
+    val network = requires[Network];
+
+    val self = cfg.getValue[NetAddress]("id2203.project.address");
+
+    pLink uponEvent {
+        case PL_Send(dest, payload) => handle {
+            trigger(PerfectLinkMessage(self, dest, payload) -> network);
+        }
+    }
+
+    network uponEvent {
+        case PerfectLinkMessage(src, dest, payload) => handle {
+            trigger(PL_Deliver(src, payload) -> pLink);
+        }
+    }
+
+}
